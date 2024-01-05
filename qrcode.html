@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>QRCode</title>
     <script src="https://kit.fontawesome.com/00443d2abd.js" crossorigin="anonymous"></script>
 
     <style>
@@ -18,16 +18,19 @@
             width: 100%;
             filter: blur(3px);
         }
+
         .container {
             display: flex;
             justify-content: center;
         }
+
         .qrimg img {
             height: 150px;
             width: 150px;
             margin-top: 15px;
             margin-left: 25px;
         }
+
         .qrimg {
             z-index: 1;
             position: relative;
@@ -35,15 +38,18 @@
             width: 120%;
             height: 120%;
         }
+
         .logo {
             display: flex;
             gap: 8px;
             margin: 10px;
         }
+
         .logo img {
             height: 30px;
             width: 30px;
         }
+
         #modal {
             margin: 70px;
             border-radius: 8px;
@@ -55,6 +61,7 @@
             z-index: 1;
             position: relative;
         }
+
         .QR {
             display: flex;
             border: 2px solid silver;
@@ -64,6 +71,7 @@
 
             background-color: white;
         }
+
         .border {
 
             position: absolute;
@@ -76,6 +84,7 @@
             width: 200px;
             mix-blend-mode: multiply;
         }
+
         #time {
             margin: 0px;
             display: inline-block;
@@ -84,10 +93,12 @@
             /* font-family: math; */
             font-style: italic;
         }
+
         .text p {
             margin: 4px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
+
         #min {
             display: inline-block;
         }
@@ -99,6 +110,7 @@
             display: none;
 
         }
+
         h1,
         .upi_Id {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -224,28 +236,31 @@
         .mainhead {
             font-size: 30px;
         }
-        .formerror{
-                color:rgb(255, 0, 0);
-                font-size:14px;
-                font-family:monospace;
-                padding-left:20px;
-                font-weight: bold;
-            }
 
-     
-        /* For styling demo, not required */
-        @media only screen and (max-width:460px){
-           .QR{
-              flex-wrap: wrap;
-           }
+        .formerror {
+            color: rgb(255, 0, 0);
+            font-size: 14px;
+            font-family: monospace;
+            padding-left: 20px;
+            font-weight: bold;
         }
-        @media only screen and (max-width:315px){
-            #modal{
+
+
+        /* For styling demo, not required */
+        @media only screen and (max-width:460px) {
+            .QR {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media only screen and (max-width:315px) {
+            #modal {
                 padding: 10px;
             }
         }
-        @media only screen and (max-width:420px){
-            #phone input{
+
+        @media only screen and (max-width:420px) {
+            #phone input {
                 width: 160px;
                 font-size: 20px;
             }
@@ -314,91 +329,91 @@
                         <div class="formerror"></div>
 
                     </div>
-                </div>
-                    <div class="pay">
-                        <div class="paynow" onclick="money()">
-                            <input type="submit" value="Pay Now">
-                        </div>
-                    </div>
-                </form>
-
-
             </div>
+            <div class="pay">
+                <div class="paynow" onclick="money()">
+                    <input type="submit" value="Pay Now">
+                </div>
+            </div>
+            </form>
+
+
         </div>
-        <script>
-            let minute = 0;
-            let seconds = 30;
-            setInterval(function () {
-                if (minute == 0 && seconds == 1) {
-                    document.getElementById("time").innerHTML = "00:00";
-                    document.getElementById("image").style.filter = "blur(2px)";
-                    document.getElementById("refresh_btn").style.display = "block";
+    </div>
+    <script>
+        let minute = 0;
+        let seconds = 30;
+        setInterval(function () {
+            if (minute == 0 && seconds == 1) {
+                document.getElementById("time").innerHTML = "00:00";
+                document.getElementById("image").style.filter = "blur(2px)";
+                document.getElementById("refresh_btn").style.display = "block";
 
-                }
-                else {
-                    seconds--;
-                    if (seconds == 0) {
-                        minute--;
-                        seconds = 30;
+            }
+            else {
+                seconds--;
+                if (seconds == 0) {
+                    minute--;
+                    seconds = 30;
 
 
-                        if (minute == 0) {
-                            minute = minute;
-
-                        }
+                    if (minute == 0) {
+                        minute = minute;
 
                     }
-                    document.getElementById("time").innerHTML = minute + ":" + seconds;
 
                 }
+                document.getElementById("time").innerHTML = minute + ":" + seconds;
 
-            }, 1000)
-
-            function btn() {
-                minute = 0;
-                seconds = 30;
-                document.getElementById("image").style.filter = "none";
-                document.getElementById("refresh_btn").style.display = "none";
-            }
-            function upi_no() {
-                document.getElementById("phone").style.display = "block";
-                document.getElementById("check_icon").style.background = "#0357de";
-                document.getElementById("phone").style.padding = "20px";
-            }
-        </script>
-        <script>
-            function setError(id, error) {
-                element = document.getElementById(id);
-                element.getElementsByClassName('formerror')[0].innerHTML = error;
-            }
-            function clearError() {
-                errors = document.getElementsByClassName('formerror');
-                for (let item of errors) {
-                    item.innerHTML = "";
-                }
-            }
-            function validateform() {
-                var returnval = true;
-                clearError();
-                var phone = document.forms['myform']["fphone"].value;
-                if (phone.length != 10) {
-                    setError("phone", "Phone Number is not valid");
-                    returnval = false;
-                }
-
-                return returnval;
             }
 
+        }, 1000)
 
-
-            function money() {
-                if (validateform() == true) {
-                    
-                    window.open("succeed.html");
-                }
+        function btn() {
+            minute = 0;
+            seconds = 30;
+            document.getElementById("image").style.filter = "none";
+            document.getElementById("refresh_btn").style.display = "none";
+        }
+        function upi_no() {
+            document.getElementById("phone").style.display = "block";
+            document.getElementById("check_icon").style.background = "#0357de";
+            document.getElementById("phone").style.padding = "20px";
+        }
+    </script>
+    <script>
+        function setError(id, error) {
+            element = document.getElementById(id);
+            element.getElementsByClassName('formerror')[0].innerHTML = error;
+        }
+        function clearError() {
+            errors = document.getElementsByClassName('formerror');
+            for (let item of errors) {
+                item.innerHTML = "";
+            }
+        }
+        function validateform() {
+            var returnval = true;
+            clearError();
+            var phone = document.forms['myform']["fphone"].value;
+            if (phone.length != 10) {
+                setError("phone", "Phone Number is not valid");
+                returnval = false;
             }
 
-        </script>
+            return returnval;
+        }
+
+
+
+        function money() {
+            if (validateform() == true) {
+
+                window.open("succeed.html");
+            }
+        }
+
+    </script>
 </body>
 
 </html>
